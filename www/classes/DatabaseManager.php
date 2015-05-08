@@ -107,6 +107,33 @@
 
 			return false;
 		}
+		
+		public function addPost($user,$title,$content) {
+			$query = "INSERT INTO posts (title,content,user_id) VALUES (";
+			$query .= "'".$title."',";
+			$query .= "'".$content."',";
+			$query .= $user->getID() . ")";
+			$result = $this->connection->query($query);
+			if(!$result) {
+				return "Error";
+			}
+			
+			return "Success";
+		}
+		
+		public function addFriend($uID,$fID) {
+			$query = "INSERT INTO friends(user_id,friend_id) VALUES (";
+			$query .= $uID . "," . $fID . "),(";
+			$query .= $fID . "," . $uID . ")";
+			if(!$this->connection->query($query)) echo "Error: " . $this->connection->error;
+		}
+		
+		public function removeFriend($uID, $fID) {
+			$query = "DELETE FROM friends WHERE (user_id=".$uID. " AND friend_id=".$fID;
+			$query .= ") OR (user_id=".$fID ." AND friend_id=" . $uID .")";
+			$this->connection->query($query);
+			if(!$this->connection->query($query)) echo "Error: " .  $this->connection->error;
+		}
 
 		static public function getInstance() {
 			if(!self::$instance) {

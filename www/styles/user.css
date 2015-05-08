@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+input.send-msg {
+		float:left;
+		display: inline-block;
+		border: medium none;
+		background-color: #008CBA;
+		color: #fff;
+		cursor: pointer;
+		padding: 5px;
+		width:150px;
+	}
+	input.add-friend {
+		display: inline-block;
+		border: medium none;
+		background-color: #23BA42;
+		color: #fff;
+		cursor: pointer;
+		padding: 5px;
+		width:150px;
+	}
+	input.remove-friend {
+		display: inline-block;
+		border: medium none;
+		background-color: #ED4107;
+		color: #fff;
+		cursor: pointer;
+		padding: 5px;
+		width:150px;
+	}

@@ -20,14 +20,18 @@
 			echo "<section id='users-list-section'><article>";
 			while($row = $result->fetch_array(MYSQLI_ASSOC)) {
 				$user = new User($row['id'], $row['email'], $row['username']);
-				echo addUserLabel($user->getPreferedName());
+				echo addUserLabel($user->getPreferedName(), $user->getID());
 			}
 			echo "</article></section>";
 		}
 	}
 
-	function addUserLabel($username) {
-		return "<div class='post-creator special-chars'>".$username."</div>";
+	function addUserLabel($username,$id) {
+		$out = "<form action='user.php' method='post'>";
+		$out .= "<input type='hidden' name='hiddenInputUserId' value='" . $id . "'>";
+		$out .= "<input type='submit' class='input-label post-creator special-chars' value='".$username."'>";
+		$out .= "</form>";
+		return $out;
 	}
 ?>
 		
